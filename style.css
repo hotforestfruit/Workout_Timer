@@ -1,0 +1,112 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background: black;
+  color: #8bffff;
+  text-shadow: 3px 3px 3px #ff5d9e;
+  animation-name: appear;
+  animation-duration: 1s;
+}
+#timer {
+  width: 100%;
+
+  justify-content: center;
+  display: grid;
+  overflow-wrap: break-word;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  position: absolute;
+  left: 50%;
+  top: 25%;
+  transform: translate(-50%, -50%);
+  font-size: xx-large;
+  align-content: space-evenly;
+  grid-template-columns: auto;
+  gap: 10%;
+
+  text-align: center;
+  padding-top: 5%;
+  padding-bottom: 15%;
+}
+
+#container {
+  display: flex;
+  font-family: sans-serif;
+  border: 5px solid hsl(60, 100%, 75%);
+  box-shadow: 3px 3px 3px hsl(342, 93%, 82%);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  flex-direction: row;
+  color: hsl(50, 100%, 75%);
+  text-shadow: 3px 3px 3px hsl(342, 93%, 82%);
+}
+#container1,
+#container2 {
+  padding: 10%;
+}
+
+#inputs {
+  display: flex;
+  margin-top: 5%;
+  margin-right: 15%;
+  display: inline-block;
+  padding-bottom: 15%;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+#current,
+#nextTaskName {
+  font-size: x-large;
+}
+#controls {
+  position: absolute;
+  left: 50%;
+  top: 85%;
+  transform: translate(-50%, -50%);
+}
+#start,
+#upperBody,
+#lowerBody,
+#addTask {
+  font-size: large;
+  font-weight: bold;
+  color: hsl(50, 100%, 75%);
+  text-shadow: 3px 3px 3px hsl(342, 93%, 82%);
+  background-color: rgba(0, 0, 0, 0);
+  border: 1px solid hsl(50, 100%, 75%);
+
+  box-shadow: 3px hsl(342, 93%, 82%);
+}
+#start:hover,
+#upperBody:hover,
+#lowerBody:hover,
+#addTask:hover {
+  color: hsl(60, 100%, 75%);
+  text-shadow: -3px -3px 3px hsl(342, 93%, 82%);
+}
+
+@keyframes appear {
+  from {
+    opacity: 0%;
+  }
+  to {
+    opacity: 100%;
+  }
+}
+@keyframes disapear {
+  from {
+    opacity: 100%;
+  }
+  to {
+    opacity: 0%;
+  }
+}
+input {
+  background-color: rgba(0, 0, 0, 0);
+  border-color: hsl(50, 100%, 75%);
+  width: 100%;
+}

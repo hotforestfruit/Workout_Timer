@@ -36,22 +36,28 @@ class Timer {
     this.minutes = ~~(duration / 1000 / 60);
     this.seconds = duration / 1000 - this.minutes * 60;
   }
+  addZeros(target,seconds){
+    if (seconds < 10) {
+      target.innerHTML = `<h1>${this.minutes}:0${seconds}</h1>`;
+    } else {
+      target.innerHTML = `<h1>${this.minutes}:${seconds}</h1>`;
+    }
+  }
   update(deltaTime) {
     if (this.deltaTimer > this.deltaTimerInterval) {
       this.convertTime(this.duration)
       this.duration -= 1000;
       this.deltaTimer = 0;
-      if (this.seconds < 10) {
-        this.target.innerHTML = `<h1>${this.minutes}:0${this.seconds}</h1>`;
-      } else {
-        this.target.innerHTML = `<h1>${this.minutes}:${this.seconds}</h1>`;
-      }
+      this.addZeros(this.target,this.seconds)
     } else {
       this.deltaTimer += deltaTime;
     }
 
     if (this.duration <= 0) {
-      this.target.innerHTML = "<h2>GOOD JOB!</h2>";
+      setTimeout(()=> {
+        this.target.innerHTML = "<h2>GOOD JOB!</h2>";
+      },1000);
+      
       this.end = true;
     }
   }
@@ -71,11 +77,7 @@ class TaskTimer extends Timer {
       this.convertTime(this.duration)
       this.duration -= 1000;
       this.deltaTimer = 0;
-      if (this.seconds < 10) {
-        this.targetTime.innerHTML = `<h1>${this.minutes}:0${this.seconds}</h1>`;
-      } else {
-        this.targetTime.innerHTML = `<h1>${this.minutes}:${this.seconds}</h1>`;
-      }
+      this.addZeros(this.targetTime,this.seconds)
     } else {
       this.deltaTimer += deltaTime;
     }
@@ -130,6 +132,10 @@ inputs.addEventListener("submit", (e) => {
   console.log(tasks);
   taskName.value = "";
   taskDuration.value = "";
+  currentTaskDisplay.innerHTML = `<h1>Custom Timer</h1>`;
+  totalTimer.convertTime(totalTimer.duration);
+  totalTimer.addZeros(totalTimeDisplay,totalTimer.seconds)
+ 
 });
 //Start Timer
 start.addEventListener("click", function () {
@@ -240,7 +246,7 @@ const presetUpper = [
   },
   {
     n: "Wide Push Up",
-    t: 30,
+    t: 45,
   },
   {
     n: "Rest",
@@ -284,7 +290,7 @@ const presetUpper = [
   },
   {
     n: "Floor Dips",
-    t: 60,
+    t: 45,
   },
   {
     n: "Rest",
@@ -292,7 +298,7 @@ const presetUpper = [
   },
   {
     n: "Side Plank (Right Side)",
-    t: 45,
+    t: 60,
   },
   {
     n: "Rest",
@@ -300,7 +306,7 @@ const presetUpper = [
   },
   {
     n: "Side Plank (Left Side)",
-    t: 45,
+    t: 60,
   },
   {
     n: "Rest",
@@ -619,14 +625,16 @@ upperBody.addEventListener("click", (e) => {
     tasks.push(new Task(task.n, task.t));
     totalTimer.duration += task.t * 1000;
   }
+  totalTimer.convertTime(totalTimer.duration)
   currentTaskDisplay.innerHTML = `<h1>Upper Body Preset</h1>`;
-  totalTimeDisplay.innerHTML = `<h1>Total Time: 21:10</h1>`;
+  totalTimeDisplay.innerHTML = `<h1>Total Time: ${totalTimer.minutes}:${totalTimer.seconds}</h1>`;
 });
 lowerBody.addEventListener("click", (e) => {
   for (let task of presetLower) {
     tasks.push(new Task(task.n, task.t));
     totalTimer.duration += task.t * 1000;
   }
+  totalTimer.convertTime(totalTimer.duration)
   currentTaskDisplay.innerHTML = `<h1>Lower Body Preset</h1>`;
-  totalTimeDisplay.innerHTML = `<h1>Total Time: 32:45</h1>`;
+  totalTimeDisplay.innerHTML = `<h1>Total Time: ${totalTimer.minutes}:${totalTimer.seconds}</h1>`;
 });

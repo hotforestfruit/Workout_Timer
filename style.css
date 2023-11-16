@@ -5,8 +5,7 @@
 }
 body {
   background: black;
-  color: #8bffff;
-  text-shadow: 3px 3px 3px #ff5d9e;
+
   animation-name: appear;
   animation-duration: 1s;
 }
@@ -25,6 +24,8 @@ body {
   align-content: space-evenly;
   grid-template-columns: auto;
   gap: 10%;
+  color: #8bffff;
+  text-shadow: 3px 3px 3px #ff5d9e;
 
   text-align: center;
   padding-top: 5%;
@@ -34,15 +35,16 @@ body {
 #container {
   display: flex;
   font-family: sans-serif;
-  border: 5px solid hsl(60, 100%, 75%);
+  border: 5px solid #8bffff;
+  /* border: 5px solid hsl(60, 100%, 75%); */
   box-shadow: 3px 3px 3px hsl(342, 93%, 82%);
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
   flex-direction: row;
-  color: hsl(50, 100%, 75%);
-  text-shadow: 3px 3px 3px hsl(342, 93%, 82%);
+  color: #ff5d9e;
+  /* text-shadow: 3px 3px 3px hsl(342, 93%, 82%); */
 }
 #container1,
 #container2 {
@@ -74,19 +76,19 @@ body {
 #addTask {
   font-size: large;
   font-weight: bold;
-  color: hsl(50, 100%, 75%);
-  text-shadow: 3px 3px 3px hsl(342, 93%, 82%);
+  color: #ff5d9e;
+  text-shadow: 3px 3px 3px #34091c;
   background-color: rgba(0, 0, 0, 0);
-  border: 1px solid hsl(50, 100%, 75%);
+  border: 1px solid #8bffff;
 
-  box-shadow: 3px hsl(342, 93%, 82%);
+  box-shadow: 3px 3px #ff5d9e;
 }
 #start:hover,
 #upperBody:hover,
 #lowerBody:hover,
 #addTask:hover {
-  color: hsl(60, 100%, 75%);
-  text-shadow: -3px -3px 3px hsl(342, 93%, 82%);
+  color: #8bffff;
+  text-shadow: -3px -3px 3px #ff5d9e;
 }
 
 @keyframes appear {
@@ -107,7 +109,12 @@ body {
 }
 input {
   background-color: rgba(0, 0, 0, 0);
-  border-color: hsl(50, 100%, 75%);
+  border: 1px solid #8bffff;
+
+  box-shadow: 3px #ff5d9e;
   width: 100%;
-  color:#8bffff
+  color: #8bffff;
+}
+button {
+  padding: 5%;
 }

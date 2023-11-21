@@ -7,6 +7,7 @@ let nextUpDisplay = document.getElementById("nextTaskName");
 let upperBody = document.getElementById("upperBody");
 let lowerBody = document.getElementById("lowerBody");
 let timerDiv = document.getElementById("timer");
+let body = document.body;
 
 // //Total time of all tasks
 let totalTime = 0;
@@ -32,11 +33,11 @@ class Timer {
     this.minutes = 0;
     this.seconds = 0;
   }
-  convertTime(duration){
+  convertTime(duration) {
     this.minutes = ~~(duration / 1000 / 60);
     this.seconds = duration / 1000 - this.minutes * 60;
   }
-  addZeros(target,seconds){
+  addZeros(target, seconds) {
     if (seconds < 10) {
       target.innerHTML = `<h1>${this.minutes}:0${seconds}</h1>`;
     } else {
@@ -45,39 +46,49 @@ class Timer {
   }
   update(deltaTime) {
     if (this.deltaTimer > this.deltaTimerInterval) {
-      this.convertTime(this.duration)
+      this.convertTime(this.duration);
       this.duration -= 1000;
       this.deltaTimer = 0;
-      this.addZeros(this.target,this.seconds)
+      this.addZeros(this.target, this.seconds);
     } else {
       this.deltaTimer += deltaTime;
     }
 
     if (this.duration <= 0) {
-      setTimeout(()=> {
+      setTimeout(() => {
         this.target.innerHTML = "<h2>GOOD JOB!</h2>";
-      },1000);
-      
+      }, 1000);
+
       this.end = true;
     }
   }
 }
 class TaskTimer extends Timer {
-  constructor(duration, targetTime, targetName, array) {
+  constructor(duration, targetTime, targetName, array, body) {
     super(duration);
     this.targetTime = targetTime;
     this.targetName = targetName;
     this.array = array;
     this.last = false;
+    this.body = body;
+  }
+  changeBackground(taskName) {
+    if (taskName === "Rest" || taskName === "Get Ready!") {
+      this.body.style.background = "red";
+    } else {
+      this.body.style.background = "green";
+    }
   }
 
   update(deltaTime) {
     if (this.deltaTimer > this.deltaTimerInterval) {
+      this.convertTime(this.duration);
       this.targetName.innerHTML = `<h1>${this.array[0].name}<h1>`;
-      this.convertTime(this.duration)
+
+      this.changeBackground(this.array[0].name);
       this.duration -= 1000;
       this.deltaTimer = 0;
-      this.addZeros(this.targetTime,this.seconds)
+      this.addZeros(this.targetTime, this.seconds);
     } else {
       this.deltaTimer += deltaTime;
     }
@@ -111,7 +122,8 @@ const currentTimer = new TaskTimer(
   currentTime,
   currentTimeDisplay,
   currentTaskDisplay,
-  tasks
+  tasks,
+  body
 );
 //Keep time consistent
 let lastTime = 0;
@@ -134,8 +146,7 @@ inputs.addEventListener("submit", (e) => {
   taskDuration.value = "";
   currentTaskDisplay.innerHTML = `<h1>Custom Timer</h1>`;
   totalTimer.convertTime(totalTimer.duration);
-  totalTimer.addZeros(totalTimeDisplay,totalTimer.seconds)
- 
+  totalTimer.addZeros(totalTimeDisplay, totalTimer.seconds);
 });
 //Start Timer
 start.addEventListener("click", function () {
@@ -625,7 +636,7 @@ upperBody.addEventListener("click", (e) => {
     tasks.push(new Task(task.n, task.t));
     totalTimer.duration += task.t * 1000;
   }
-  totalTimer.convertTime(totalTimer.duration)
+  totalTimer.convertTime(totalTimer.duration);
   currentTaskDisplay.innerHTML = `<h1>Upper Body Preset</h1>`;
   totalTimeDisplay.innerHTML = `<h1>Total Time: ${totalTimer.minutes}:${totalTimer.seconds}</h1>`;
 });
@@ -634,7 +645,7 @@ lowerBody.addEventListener("click", (e) => {
     tasks.push(new Task(task.n, task.t));
     totalTimer.duration += task.t * 1000;
   }
-  totalTimer.convertTime(totalTimer.duration)
+  totalTimer.convertTime(totalTimer.duration);
   currentTaskDisplay.innerHTML = `<h1>Lower Body Preset</h1>`;
   totalTimeDisplay.innerHTML = `<h1>Total Time: ${totalTimer.minutes}:${totalTimer.seconds}</h1>`;
 });

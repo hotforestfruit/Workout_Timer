@@ -44,11 +44,17 @@ body {
   transform: translate(-50%, -50%);
   flex-direction: row;
   color: #ff5d9e;
+  justify-content: space-evenly;
+
+  padding: 2rem;
+
   /* text-shadow: 3px 3px 3px hsl(342, 93%, 82%); */
 }
 #container1,
 #container2 {
-  padding: 10%;
+  max-width: 56%;
+  padding: 1rem;
+  margin: 3%;
 }
 
 #inputs {
@@ -80,8 +86,9 @@ body {
   text-shadow: 3px 3px 3px #34091c;
   background-color: rgba(0, 0, 0, 0);
   border: 1px solid #8bffff;
-
+  padding: 0.25rem;
   box-shadow: 3px 3px #ff5d9e;
+  margin-top: 1rem;
 }
 #start:hover,
 #upperBody:hover,
@@ -89,6 +96,8 @@ body {
 #addTask:hover {
   color: #8bffff;
   text-shadow: -3px -3px 3px #ff5d9e;
+  border: 1px solid #ff5d9e;
+  box-shadow: -3px -3px 3px #8bffff;
 }
 
 @keyframes appear {
@@ -110,11 +119,8 @@ body {
 input {
   background-color: rgba(0, 0, 0, 0);
   border: 1px solid #8bffff;
-
+  margin-bottom: 1rem;
   box-shadow: 3px #ff5d9e;
   width: 100%;
   color: #8bffff;
-}
-button {
-  padding: 5%;
 }
